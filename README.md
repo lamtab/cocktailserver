@@ -260,7 +260,7 @@ Learn the Git basics of stage, commit, push when you make a change to the 'sampl
  
     `git commit -m "changing sample.html"`
     
-7. Push to Bitbucket.
+7. Push to Bitbucket. 
 
     `git push`
     
