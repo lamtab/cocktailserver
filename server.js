@@ -108,9 +108,9 @@ router.use(function(req, res, next) {
 });
 
 app.use('/api', router);
-app.models = require(Configuration.rootDir + '/models');
+app.models = require('./models');
 
-app.use('/', require(Configuration.rootDir + '/routes'));
+app.use('/', require('./routes'));
 
 app.listen(port);
 console.log('Cocktails Server listening on port ' + port);
