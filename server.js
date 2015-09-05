@@ -43,17 +43,17 @@ app.use(morgan('dev'));
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 app.use(function(req, res, next){
-    var     err = req.session.error,
+    /*var     err = req.session.error,
             msg = req.session.notice,
             success = req.session.success;
    
     delete req.session.error;
     delete req.session.success;
     delete req.session.notice;
-
+*/
     functions.xssFilter(req.body);
 
-    if (err) {
+    /*if (err) {
         res.locals.error = err;
     }
     if (msg) {
@@ -61,7 +61,7 @@ app.use(function(req, res, next){
     }
     if (success) {
         res.locals.success = success;
-    }
+    }*/
 
     next();
 });
