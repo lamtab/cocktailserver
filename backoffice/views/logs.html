@@ -1,0 +1,61 @@
+<div class="panel panel-default col-lg-12 no-padding">
+	<!-- Default panel contents -->
+	<div class="panel-heading">&nbsp;</div>
+	<div class="panel-body">
+		<form>
+			<div class="form-group">
+				<div class="input-group">
+				<div class="input-group-addon"><i class="fa fa-search"></i></div>
+					<input type="text" class="form-control" placeholder="Search for Logs" ng-model="vm.searchLog">
+				</div>      
+			</div>
+		</form>
+		<table class="fixed table table-responsive" data-toggle="table" data-height="299">
+			<thead>
+				<th>startTime</th>
+				<th>method</th>
+				<th>user</th>
+				<th>url</th>
+				<th>createdAt</th>
+			</thead>
+			<tbody>
+				<tr dir-paginate="log in vm.Logs | orderBy: 'startTime' | filter: vm.searchLog | itemsPerPage: 10" data-toggle="modal" data-target="#LogItem" ng-click="vm.SelectLog(log)" class="clickable">
+					<td>{{log.startTime}}</td>
+					<td>{{log.method}}</td>
+					<td>{{log.user}}</td>
+					<td class="nowrap">{{log.url}}</td>
+					<td>{{log.createdAt}}</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<dir-pagination-controls
+			        max-size="10"
+			        direction-links="true"
+			        boundary-links="true" >
+			    </dir-pagination-controls>
+			</tfoot>
+		</table>
+	</div>
+</div>
+
+<div id="LogItem" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h2>
+					{{vm.Log.startTime}}
+				</h2>
+			</div>
+			<div class="modal-body">
+				<p>{{vm.Log.user}}&nbsp;{{vm.Log.method}}&nbsp;{{vm.Log.url}}&nbsp;{{vm.Log.referer}}</p>
+				<p>{{vm.Log.agent}}</p>
+				<p>{{vm.Log.body}}</p>
+				<p>{{vm.Log.createdAt}}</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

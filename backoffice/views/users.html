@@ -1,0 +1,67 @@
+<div class="panel panel-default col-md-7 no-padding">
+	<!-- Default panel contents -->
+	<div class="panel-heading">&nbsp;</div>
+	<div class="panel-body">
+		<form>
+			<div class="form-group">
+				<div class="input-group">
+				<div class="input-group-addon"><i class="fa fa-search"></i></div>
+					<input type="text" class="form-control" placeholder="Search for Users" ng-model="vm.searchUser">
+				</div>      
+			</div>
+		</form>
+		<table class="table table-responsive">
+			<thead>
+				<th>Username</th>
+				<th>Name</th>
+				<th>Surname</th>
+				<th>Role</th>
+				<th>email</th>
+				<th>createdAt</th>
+				<th>updatedAt</th>
+			</thead>
+			<tbody>
+				<tr dir-paginate="user in vm.users | orderBy: 'username' | filter: vm.searchUser | itemsPerPage: 10" ng-click="vm.SelectUser(user)">
+					<td>{{user.username}}</td>
+					<td>{{user.firstName}}</td>
+					<td>{{user.lastName}}</td>
+					<td>{{user.role}}</td>
+					<td class="nowrap">{{user.email}}</td>
+					<td class="nowrap">{{user.createdAt}}</td>
+					<td class="nowrap">{{user.updatedAt}}</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<dir-pagination-controls
+			        max-size="5"
+			        direction-links="true"
+			        boundary-links="true" >
+			    </dir-pagination-controls>
+			</tfoot>
+		</table>
+	</div>
+</div>
+
+<div class="panel panel-default col-md-4 no-padding col-md-offset-1">
+	<div class="panel-heading">&nbsp;</div>
+	<div class="panel-body">
+		<span class="badge" ng-click="vm.ClearUser()">Clear</span>
+		<form class="form-panel" name="form" ng-submit="vm.SubmitForm()" role="form">
+				<input type="text" class="form-control" placeholder="Username" name="username" ng-model="vm.user.username" required autofocus ng-disabled="vm.operation == 'Update'">
+            	<input type="password" class="form-control" placeholder="Password" name="password" ng-model="vm.user.password" required ng-disabled="vm.operation == 'Update'">
+            	<input type="text" class="form-control" placeholder="Role" name="role" ng-model="vm.user.role" required autofocus>
+        		<input type="text" class="form-control" placeholder="Name" name="firstName" ng-model="vm.user.firstName" required>
+            	<input type="text" class="form-control" placeholder="Surname" name="lastName" ng-model="vm.user.lastName" required>
+            	<input type="email" class="form-control" placeholder="email" name="email" ng-model="vm.user.email" required ng-disabled="vm.operation == 'Update'">
+            	<label>
+            	  <input type="radio" value="0" name="searchMode" ng-model="vm.user.searchMode">&nbsp;Precise Search
+	              <input type="radio" value="1" name="searchMode" ng-model="vm.user.searchMode">&nbsp;Loose Search
+	            </label>
+            	<label>
+	              <input type="checkbox" name="active" ng-model="vm.user.active">Active: {{vm.user.active? true: false}}
+	            </label>
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-block btn-lg btn-primary">{{vm.operation}}	<img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+			</button>
+        </form>
+	</div>
+</div>

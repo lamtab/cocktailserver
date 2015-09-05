@@ -1,0 +1,123 @@
+<div class="no-padding panel panel-default col-md-7 col-md-offset-0">
+	<!-- Default panel contents -->
+	<div class="panel-heading">&nbsp;</div>
+	<div class="panel-body">
+		<form>
+			<div class="form-group">
+				<div class="input-group">
+				<div class="input-group-addon"><i class="fa fa-search"></i></div>
+					<input type="text" class="form-control" placeholder="Search for Cocktail" ng-model="vm.searchCocktail">
+				</div>      
+			</div>
+		</form>
+		<table class="fixed table table-responsive">
+			<thead>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Recipe</th>
+			</thead>
+			<tbody>
+				<tr dir-paginate="cocktail in vm.cocktails | orderBy: 'name' | filter: vm.searchCocktail | itemsPerPage: 10" ng-click="vm.SelectCocktail(cocktail)">
+					<td>{{cocktail.name}}</td>
+					<td class="nowrap">{{cocktail.description}}</td>
+					<td class="nowrap">{{cocktail.recipe}}</td>
+					<td><span class="badge" ng-click="vm.Delete(cocktail)">Delete</span></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<dir-pagination-controls
+			        max-size="7"
+			        direction-links="true"
+			        boundary-links="true" >
+			    </dir-pagination-controls>
+			</tfoot>
+		</table>
+	</div>
+</div>
+
+<div class="no-padding panel panel-default col-md-4 col-md-offset-1">
+	<div class="panel-heading">&nbsp;</div>
+	<div class="panel-body">
+		<span class="badge" ng-click="vm.ClearCocktail()">Clear</span>
+		<span ng-hide="vm.cocktail ==null" class="badge pull-right" data-toggle="modal" data-target="#ingredientCollection">Ingredients</span>
+		<div id="ingredientCollection" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+						<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<div class="input-group">
+									<div class="input-group-addon"><i class="fa fa-search"></i></div>
+										<input type="text" class="form-control" placeholder="Search for Ingredient" ng-model="vm.searchIngredient">
+									</div>      
+								</div>
+							</form>
+							<table class="table table-responsive table-striped">
+								<thead>
+									<th>Name</th>
+									<th>Brand</th>
+									<th>Color</th>
+									<th>&nbsp;</th>
+									<th>&nbsp;</th>
+								</thead>
+								<tbody>
+									<tr dir-paginate="ingredient in vm.ingredients | orderBy: 'name' | filter: vm.searchIngredient | itemsPerPage: 10">
+										<td>{{ingredient.name}}</td>
+										<td>{{ingredient.brand}}</td>
+										<td><div class="colorSampler"ng-style="{'background-color':ingredient.color}">&nbsp;</div></td>
+										<td>{{ingredient.color}}</td>
+										<td ng-click="vm.AddIngredient(ingredient)"><span class="badge">Add Ingredient</span></td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<dir-pagination-controls
+								        max-size="5"
+								        direction-links="true"
+								        boundary-links="true" >
+								    </dir-pagination-controls>
+								</tfoot>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+				</div>
+			</div>
+		</div>
+			
+		<form class="form-panel" name="form" ng-submit="vm.SubmitForm()" role="form">
+			<div class="input-group">
+	            <input type="text" class="form-control" placeholder="Name" name="name" ng-model="vm.cocktail.name" required autofocus>
+	            <textarea rows="5" class="form-control" placeholder="Description" name="description" ng-model="vm.cocktail.description" 
+	             noresize></textarea>
+	            <textarea rows="5" class="form-control" placeholder="Recipe" name="recipe" ng-model="vm.cocktail.recipe" 
+	            required noresize></textarea>
+	            <div class="panel panel-default">
+	            	<table class="table table-responsive table-striped">
+	            		<tbody>
+	            			<tr ng-repeat="ingredient in vm.cocktail.ingredients">
+	            				<td>
+	            					{{ingredient.name}}
+	            				</td>
+	            				<td>
+	            					<input class="pull-right col-xs-10" type="text" placeholder="Quantity" ng-model="vm.quantities[$index]" name="quantity">
+	            				</td>
+	            				<td>
+	            					<span class="badge" ng-click="vm.DeleteIngredient(ingredient)">Delete</span>
+	            				</td>
+	            			</tr>
+	            		</tbody>
+	            	</table>
+	            </div>
+	        </div>
+            <div class="form-actions">
+    			<button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-block btn-lg btn-primary">{{vm.operation}}
+    				<img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+    			</button>
+    		</div>
+        </form>
+	</div>
+</div	>			
