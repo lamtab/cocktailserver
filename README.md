@@ -293,4 +293,3 @@ All of us at Bitbucket and SourceTree hope your experience is a great one! We ar
 [Extra]: http://michelf.ca/projects/php-markdown/extra/
 [id]: http://example.com/  "Optional Title Here"
 [BBmarkup]: https://confluence.atlassian.com/x/xTAvEw
-![Codeship Status](https://codeship.com/projects/100852/status)
