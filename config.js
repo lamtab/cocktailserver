@@ -5,6 +5,6 @@ module.exports = {
 	'modelDir': '/models/',
 	'routeDir': '/routes/',
     'secret': uuid.v4(),
-    'database': 'mongodb://lamtab:c^6WQS5t@ds035503.mongolab.com:35503/locktails'
+    'database': 'mongodb://lamtab:lambros93132*@ds035503.mongolab.com:35503/locktails'
 
 };
