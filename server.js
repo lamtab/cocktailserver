@@ -12,7 +12,6 @@ var parseurl            = require('parseurl');
 var logger              = require('morgan');
 var cookieParser        = require('cookie-parser');
 var methodOverride      = require('method-override');
-var session             = require('express-session');
 var uuid                = require('uuid');
 var valExpress          = require('express-validate-requests');
 var xssFilters          = require('xss-filters');
@@ -42,13 +41,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(methodOverride('X-HTTP-Method-Override'));
-app.use(session({
-  secret: uuid.v4(),
-  resave: true,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}))
-
 
 app.use(function(req, res, next){
     var     err = req.session.error,
