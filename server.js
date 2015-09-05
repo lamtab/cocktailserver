@@ -87,7 +87,7 @@ app.use(function(req, res, next) {
   }
 });
 
-var port = process.env.PORT || 8080;
+var port = 22442;
 var router = express.Router();
 router.use(function(req, res, next) {
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
