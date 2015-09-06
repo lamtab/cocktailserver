@@ -114,6 +114,6 @@ exports.arrayDiffPrecise = function(A,B) {
       diffWeighted += A[i].weight;
     }
   }
-  result = { 'diffPerc': diff / n, 'diffAbs': diff, 'diffWeighted': diffWeighted };
+  var result = { 'diffPerc': diff / n, 'diffAbs': diff, 'diffWeighted': diffWeighted };
   return result;
 }
