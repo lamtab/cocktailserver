@@ -35,7 +35,7 @@ var auth = {
                         if(user.active) {
                           return res.json({'success': true, 'token': token});
                         } else {
-                          return res.json({'success': false, 'message': 'Invalid username or password. Please try again.'});
+                          return res.json({'success': false, 'message': 'Your account is not activated yet. Please be patient'});
                         }
 
                     }
