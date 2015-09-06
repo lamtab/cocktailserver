@@ -134,7 +134,7 @@ var users = {
                 if (err) {
                     return res.status(500).json(err);
                 }  else {
-                    return res.json({'user': user});
+                    return res.json({});
                 }
             });
 
@@ -188,7 +188,7 @@ var users = {
                 if (err) {
                     return res.status(500).json(err);
                 } else {
-                    return res.json({'user': user});
+                    return res.json({});
                 }
             });
         });
