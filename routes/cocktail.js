@@ -19,7 +19,9 @@ var cocktail = {
             if(user == null) {
                 return res.status(404).json({'message': 'User doesn\'t exist'});
             }
-            
+            if(user.cellar.length == 0) {
+                return res.status(400).json({'message': 'Cellar is empty'});   
+            }
             Cocktail.find().populate('ingredients').exec(function(err, cocktails) {
                 if (err) {
                     return res.status(500).json(err);
