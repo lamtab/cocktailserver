@@ -12,7 +12,7 @@ var cocktail = {
     Propose: function(req, res) {
         functions.CreateLog(req,res);
         var closest = [], aDiff, diff = 1, i = 0, temp = 0, pos, cocktailCollection = [], ingredientCollection = [];
-        User.findOne({'username' : req.body.username}).populate('cellar').exec(function(err, user) {
+        User.findOne({'username' : req.decoded.username}).populate('cellar').exec(function(err, user) {
             if(err) {
                 return res.status(500).json(err);
             }

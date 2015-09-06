@@ -26,7 +26,7 @@ router.get('/api/user/GetByUsername/:username', user.GetByUsername);
 router.get('/api/ingredient/GetByName/:name', ingredient.GetByName);
 router.get('/api/ingredient/', ingredient.GetAll);
 
-router.post('/api/cocktail/Propose/', cocktail.Propose);
+router.get('/api/cocktail/Propose/', cocktail.Propose);
 router.get('/api/cocktail/GetByName/:name', cocktail.GetByName);
 router.get('/api/cocktail/', cocktail.GetAll);
 
