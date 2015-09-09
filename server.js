@@ -54,7 +54,7 @@ var corsOptionsDelegate = function(req, callback){
 };
 app.use(cors(corsOptionsDelegate));
 app.use(function(req, res, next) {
-   res.header("Access-Control-Allow-Origin", "http://mpla.com");
+   res.header("Access-Control-Allow-Origin", "http://155633060.linuxzone49.grserver.gr");
    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
    res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type,Cache-Control");
    if (req.method === 'OPTIONS') {
