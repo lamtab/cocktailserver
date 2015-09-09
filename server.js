@@ -42,7 +42,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(methodOverride('X-HTTP-Method-Override'));
 
-var whitelist = ['http://localhost:8888'];
+var whitelist = ['http://155633060.linuxzone49.grserver.gr'];
 var corsOptionsDelegate = function(req, callback){
     var corsOptions;
     if(whitelist.indexOf(req.header('Origin')) !== -1){
