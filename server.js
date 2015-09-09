@@ -42,31 +42,17 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(methodOverride('X-HTTP-Method-Override'));
 
-app.use(function(req, res, next){
-    /*var     err = req.session.error,
-            msg = req.session.notice,
-            success = req.session.success;
-   
-    delete req.session.error;
-    delete req.session.success;
-    delete req.session.notice;
-*/
-    functions.xssFilter(req.body);
-
-    /*if (err) {
-        res.locals.error = err;
+var whitelist = ['http://localhost:8888'];
+var corsOptionsDelegate = function(req, callback){
+    var corsOptions;
+    if(whitelist.indexOf(req.header('Origin')) !== -1){
+        corsOptions = { origin: true };
+    } else {
+        corsOptions = { origin: false };
     }
-    if (msg) {
-        res.locals.notice = msg;
-    }
-    if (success) {
-        res.locals.success = success;
-    }*/
-
-    next();
-});
-
-app.use(cors());
+    callback(null, corsOptions);
+};
+app.use(cors(corsOptionsDelegate));
 app.use(function(req, res, next) {
    res.header("Access-Control-Allow-Origin", "http://mpla.com");
    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
