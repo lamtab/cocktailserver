@@ -40,7 +40,7 @@ var CocktailAPI = function() {
      */
     self.setupVariables = function() {
         //  Set the environment variables we need.
-        self.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
+        self.ipaddress = process.env.IP;
         self.port      = process.env.PORT || 8080;
         // default to a 'localhost' configuration:
         /*self.connection_string = '127.0.0.1:27017/test';
@@ -56,7 +56,7 @@ var CocktailAPI = function() {
         if (typeof self.ipaddress === "undefined") {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
             //  allows us to run/test the app locally.
-            console.warn('No OPENSHIFT_NODEJS_IP var, using 127.0.0.1');
+            console.warn('No IP var, using 127.0.0.1');
             self.ipaddress = "127.0.0.1";
         };
     };
@@ -89,7 +89,7 @@ var CocktailAPI = function() {
      */
     self.terminator = function(sig){
         if (typeof sig === "string") {
-           console.log('%s: Received %s - terminating sample app ...',
+           console.log('%s: Received %s - terminating app ...',
                        Date(Date.now()), sig);
            process.exit(1);
         }
@@ -216,9 +216,16 @@ var CocktailAPI = function() {
      */
     self.start = function() {
         //  Start the app on the specific interface (and port).
-        http.createServer(self.app).listen(self.port, self.ipaddress, function () {
+        /*http.createServer(self.app).listen(self.port, self.ipaddress, function () {
             console.log('%s: Node server started on %s:%d ...',
                         Date(Date.now() ), self.ipaddress, self.port);
+        });*/
+//Heroku Fix
+        app.get('/', function(request, response) {
+            var result = 'App is running'
+            response.send(result);
+        }).listen(app.get('port'), function() {
+            console.log('App is running, server is listening on port ', app.get('port'));
         });
     };
 
