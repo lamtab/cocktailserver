@@ -221,7 +221,7 @@ var CocktailAPI = function() {
                         Date(Date.now() ), self.ipaddress, self.port);
         });*/
 //Heroku Fix
-        app.get('/', function(request, response) {
+        self.app.get('/', function(request, response) {
             var result = 'App is running'
             response.send(result);
         }).listen(app.get('port'), function() {
