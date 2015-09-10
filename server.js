@@ -199,7 +199,7 @@ var CocktailAPI = function() {
 
 
     /**
-     *  Initializes the sample application.
+     *  Initializes the application.
      */
     self.initialize = function() {
         self.setupVariables();
@@ -212,7 +212,7 @@ var CocktailAPI = function() {
 
 
     /**
-     *  Start the server (starts up the sample application).
+     *  Start the server (starts up the application).
      */
     self.start = function() {
         //  Start the app on the specific interface (and port).
@@ -229,7 +229,7 @@ var CocktailAPI = function() {
         });
     };
 
-};   /*  Sample Application.  */
+};   /*  Application.  */
 
 
 
