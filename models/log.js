@@ -2,7 +2,6 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var validator = require('validator');
 
 //Schema
 var LogSchema = new mongoose.Schema({

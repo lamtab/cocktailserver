@@ -2,8 +2,6 @@
 
 var mongoose = require('mongoose');
 var LogModel = mongoose.model('Log');
-var valExpress = require('express-validate-requests');
-var helpers = valExpress.helpers;
 
 var Log = {
     GetAll: function(req, res) {

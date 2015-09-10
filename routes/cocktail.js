@@ -4,8 +4,6 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Ingredient = mongoose.model('Ingredient');
 var Cocktail = mongoose.model('Cocktail');
-var valExpress = require('express-validate-requests');
-var helpers = valExpress.helpers;
 var functions  = require('../functions');
 
 var cocktail = {

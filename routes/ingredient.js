@@ -2,8 +2,6 @@
 
 var mongoose = require('mongoose');
 var Ingredient = mongoose.model('Ingredient');
-var valExpress = require('express-validate-requests');
-var helpers = valExpress.helpers;
 var functions  = require('../functions');
 
 var ingredient = {
