@@ -41,7 +41,7 @@ var CocktailAPI = function() {
     self.setupVariables = function() {
         //  Set the environment variables we need.
         self.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
-        self.port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+        self.port      = process.env.PORT || 8080;
         // default to a 'localhost' configuration:
         /*self.connection_string = '127.0.0.1:27017/test';
         // if OPENSHIFT env variables are present, use the available connection info:
